@@ -1,5 +1,7 @@
 package ru.project.library.models;
 
+import ru.project.library.util.CurrentYear;
+
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
@@ -17,7 +19,7 @@ public class Book {
     private String author;
 
     @Min(value = 1500, message = "Год должен быть больше, чем 1500")
-    @Max(value = 2023, message = "Год не должен быть больше текущего")
+    @CurrentYear
     private int year;
 
     public Book() {
