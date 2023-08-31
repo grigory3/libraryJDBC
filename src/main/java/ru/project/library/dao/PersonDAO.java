@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import ru.project.library.models.Person;
+import ru.project.library.models.Book;
 
 import java.util.List;
 import java.util.Optional;
@@ -45,5 +46,9 @@ public class PersonDAO {
     public Optional<Person> getPersonByFullName(String fullName) {
         return jdbcTemplate.query("SELECT * FROM Person WHERE full_name=?", new Object[]{fullName},
                 new BeanPropertyRowMapper<>(Person.class)).stream().findAny();
+    }
+    public List<Book> getBooksByPersonId(int id) {
+        return jdbcTemplate.query("SELECT * FROM Book WHERE person_id = ?", new Object[]{id},
+                new BeanPropertyRowMapper<>(Book.class));
     }
 }
